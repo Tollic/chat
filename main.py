@@ -6,7 +6,8 @@ connected_clients = set()
 
 async def connect_client(websocket, path):
     # Добавление клиента в список подключенных
-    connected_clients.add(websocket)
+    a = connected_clients.add(websocket)
+    print(a)
     try:
         async for message in websocket:
             # Распространение сообщения по всем подключенным клиентам
