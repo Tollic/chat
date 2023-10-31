@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Монополия</title>
+</head>
+<body>
+    <h1>Монополия</h1>
+    <div id="game-log"></div>
+    <input type="text" id="message" placeholder="Введите сообщение">
+    <button id="send">Отправить</button>
+
+    <script>
+        const logElement = document.getElementById("game-log");
+        const messageElement = document.getElementById("message");
+        const sendButton = document.getElementById("send");
+
+        const socket = new WebSocket("ws://localhost:8765");
+
+        socket.onmessage = (event) => {
+            const message = event.data;
+            logElement.innerHTML += `<p>${message}</p>`;
+        };
+
+        sendButton.addEventListener("click", () => {
+            const message = messageElement.value;
+            socket.send(message);
+            messageElement.value = "";
+        });
+    </script>
+</body>
+</html>
