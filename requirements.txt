@@ -1,2 +1,2 @@
 websockets
-flask flask-socketio
+Flask-SocketIO
